@@ -1,0 +1,13 @@
+d:xorg-libpixman
+d:mesa
+d:xorg-font-bh-ttf
+f:1959729db7703f2fd2270335bdf12188:xorg-libpixman/Pkgfile
+f:139306ca120c31153b14675620cb6fb3:xorg-libpixman/.footprint
+f:de12d2c74f7d23c1b65db4802bb6be34:xorg-libpixman/.signature
+f:2186ae17790d38d71211bf9a2d3d87b9:mesa/Pkgfile
+f:4d3801752eef5e90f732a74678e3d656:mesa/.footprint
+f:6ec0d299d9fd6ae9ffd7091a7c9067eb:mesa/.signature
+f:8a30087027e320d7b680f58a5f3d7fb0:xorg-font-bh-ttf/post-install
+f:74bc73f773cc5923bd4b1c2c8257bf13:xorg-font-bh-ttf/Pkgfile
+f:82364eaadb352969effd64fbf2d38480:xorg-font-bh-ttf/.footprint
+f:4ce6800203954f23b701ccb10dcb135a:xorg-font-bh-ttf/.signature
