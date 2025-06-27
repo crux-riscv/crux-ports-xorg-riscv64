@@ -1,0 +1,20 @@
+# Description: Pixel manipulation library
+# URL: https://xorg.freedesktop.org/wiki/
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+
+name=xorg-libpixman
+version=0.46.2
+release=1
+source=(https://www.x.org/releases/individual/lib/pixman-$version.tar.xz)
+
+build() {
+	meson setup pixman-$version build \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode nodownload \
+		-D b_lto=false \
+		-D b_pie=true \
+		-D tests=disabled
+	meson compile -C build -j ${JOBS:-1}
+	DESTDIR=$PKG meson install -C build
+}
