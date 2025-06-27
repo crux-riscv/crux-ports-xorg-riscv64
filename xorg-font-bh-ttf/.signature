@@ -1,0 +1,5 @@
+untrusted comment: verify with /etc/ports/xorg-riscv64.pub
+RWTzD/a0Q5Vzj5uY9nvPbu2U9qX79lcK0WtfdDivbla8zaPWePxAE2s/3PeGrb2gP9doa2kYgOBq9ciVIS27Y8YYXpYi5NNyTQg=
+SHA256 (Pkgfile) = 4e06eb9d52927e090b32804b87958bf87b8f9142bd77da0687cfb40701200bad
+SHA256 (.footprint) = ca9f4730a1b6d2950a75fc72e14d97b0bcebca32b3f1f98cd89153e0446f5487
+SHA256 (font-bh-ttf-1.0.3.tar.bz2) = 1b4bea63271b4db0726b5b52c97994c3313b6023510349226908090501abd25f
