@@ -1,0 +1,43 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/EGL/
+-rw-r--r--	root/root	usr/include/EGL/eglext_angle.h
+-rw-r--r--	root/root	usr/include/EGL/eglmesaext.h
+drwxr-xr-x	root/root	usr/include/GL/
+drwxr-xr-x	root/root	usr/include/GL/internal/
+-rw-r--r--	root/root	usr/include/GL/internal/dri_interface.h
+-rw-r--r--	root/root	usr/include/gbm.h
+-rw-r--r--	root/root	usr/include/gbm_backend_abi.h
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/dri/
+-rwxr-xr-x	root/root	usr/lib/dri/libdril_dri.so
+lrwxrwxrwx	root/root	usr/lib/dri/vmwgfx_dri.so -> libdril_dri.so
+lrwxrwxrwx	root/root	usr/lib/dri/zink_dri.so -> libdril_dri.so
+drwxr-xr-x	root/root	usr/lib/gbm/
+-rwxr-xr-x	root/root	usr/lib/gbm/dri_gbm.so
+lrwxrwxrwx	root/root	usr/lib/libEGL_mesa.so -> libEGL_mesa.so.0
+lrwxrwxrwx	root/root	usr/lib/libEGL_mesa.so.0 -> libEGL_mesa.so.0.0.0
+-rwxr-xr-x	root/root	usr/lib/libEGL_mesa.so.0.0.0
+lrwxrwxrwx	root/root	usr/lib/libGLX_indirect.so.0 -> libGLX_mesa.so.0
+lrwxrwxrwx	root/root	usr/lib/libGLX_mesa.so -> libGLX_mesa.so.0
+lrwxrwxrwx	root/root	usr/lib/libGLX_mesa.so.0 -> libGLX_mesa.so.0.0.0
+-rwxr-xr-x	root/root	usr/lib/libGLX_mesa.so.0.0.0
+-rwxr-xr-x	root/root	usr/lib/libgallium-25.1.3-1.so
+lrwxrwxrwx	root/root	usr/lib/libgbm.so -> libgbm.so.1
+lrwxrwxrwx	root/root	usr/lib/libgbm.so.1 -> libgbm.so.1.0.0
+-rwxr-xr-x	root/root	usr/lib/libgbm.so.1.0.0
+-rwxr-xr-x	root/root	usr/lib/libvulkan_intel_hasvk.so
+-rwxr-xr-x	root/root	usr/lib/libvulkan_virtio.so
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/dri.pc
+-rw-r--r--	root/root	usr/lib/pkgconfig/gbm.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/drirc.d/
+-rw-r--r--	root/root	usr/share/drirc.d/00-mesa-defaults.conf
+drwxr-xr-x	root/root	usr/share/glvnd/
+drwxr-xr-x	root/root	usr/share/glvnd/egl_vendor.d/
+-rw-r--r--	root/root	usr/share/glvnd/egl_vendor.d/50_mesa.json
+drwxr-xr-x	root/root	usr/share/vulkan/
+drwxr-xr-x	root/root	usr/share/vulkan/icd.d/
+-rw-r--r--	root/root	usr/share/vulkan/icd.d/intel_hasvk_icd.riscv64.json
+-rw-r--r--	root/root	usr/share/vulkan/icd.d/virtio_icd.riscv64.json
