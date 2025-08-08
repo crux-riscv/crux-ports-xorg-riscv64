@@ -5,7 +5,7 @@
 # Optional: cbindgen directx-headers glslang libclc libunwind libva libvdpau lm_sensors lua python3-ply rust-bindgen spirv-llvm-translator vulkan-loader wayland-protocols
 
 name=mesa
-version=25.1.3
+version=25.1.7
 release=1
 source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
