@@ -5,60 +5,63 @@
 # Optional: cbindgen directx-headers glslang libclc libunwind libva libvdpau lm_sensors lua python3-ply rust-bindgen spirv-llvm-translator vulkan-loader wayland-protocols
 
 name=mesa
-version=25.1.7
+version=25.2.1
 release=1
-source=(https://archive.mesa3d.org/$name-$version.tar.xz)
+source=(https://archive.mesa3d.org/$name-$version.tar.xz
+    37027.patch)
 
 build() {
-	prt-get isinst directx-headers && PKGMK_MESA_GALLIUM+='d3d12,'
-	prt-get isinst libclc && PKGMK_MESA+=' -D gallium-opencl=icd' PKGMK_MESA_GALLIUM+='iris,'
-	prt-get isinst libclc rust-bindgen && PKGMK_MESA+=' -D gallium-rusticl=true'
-	prt-get isinst libunwind && PKGMK_MESA+=' -D libunwind=enabled'
-#	prt-get isinst libva && PKGMK_MESA+=' -D gallium-va=enabled' || PKGMK_MESA+=' -D gallium-va=disabled'
-	prt-get isinst libvdpau && PKGMK_MESA+=' -D gallium-vdpau=enabled' || PKGMK_MESA+=' -D gallium-vdpau=disabled'
-	prt-get isinst lm_sensors && PKGMK_MESA+=' -D lmsensors=enabled'
-	if prt-get isinst vulkan-loader; then
-#		prt-get isinst cbindgen rust-bindgen spirv-llvm-translator && PKGMK_MESA_VULKAN_DRIVERS+='nouveau,'
-#		prt-get isinst directx-headers && PKGMK_MESA_VULKAN_DRIVERS+='microsoft-experimental,'
-#		prt-get isinst glslang && PKGMK_MESA_VULKAN_DRIVERS+='amd,' PKGMK_MESA_VULKAN_LAYERS+='overlay,'
-		prt-get isinst glslang libclc python3-ply lua && PKGMK_MESA_VULKAN_DRIVERS+='intel,' PKGMK_MESA_VULKAN_LAYERS+='intel-nullhw,'
-		VULKAN_DRIVERS=${PKGMK_MESA_VULKAN_DRIVERS#,}intel_hasvk,virtio
-		PKGMK_MESA_GALLIUM+='zink,'
-	else
-		VULKAN_DRIVERS=""
-		VULKAN_LAYERS=""
-	fi
-	prt-get isinst wayland-protocols && PKGMK_MESA_PLATFORMS+='wayland'
-	## for future references
-	#prt-get isinst xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm && PKGMK_MESA_PLATFORMS+=',x11'
-	PKGMK_MESA_PLATFORMS+=',x11'
+    prt-get isinst directx-headers && PKGMK_MESA_GALLIUM+='d3d12,'
+    prt-get isinst libclc && PKGMK_MESA_GALLIUM+='iris,'
+    prt-get isinst libclc rust-bindgen && PKGMK_MESA+=' -D gallium-rusticl=true'
+    prt-get isinst libunwind && PKGMK_MESA+=' -D libunwind=enabled'
+    #prt-get isinst libva && PKGMK_MESA+=' -D gallium-va=enabled' || PKGMK_MESA+=' -D gallium-va=disabled'
+    prt-get isinst libvdpau && PKGMK_MESA+=' -D gallium-vdpau=enabled' || PKGMK_MESA+=' -D gallium-vdpau=disabled'
+    prt-get isinst lm_sensors && PKGMK_MESA+=' -D lmsensors=enabled'
+    if prt-get isinst vulkan-loader; then
+        #prt-get isinst cbindgen rust-bindgen spirv-llvm-translator && PKGMK_MESA_VULKAN_DRIVERS+='nouveau,'
+        #prt-get isinst directx-headers && PKGMK_MESA_VULKAN_DRIVERS+='microsoft-experimental,'
+        #prt-get isinst glslang && PKGMK_MESA_VULKAN_DRIVERS+='amd,' PKGMK_MESA_VULKAN_LAYERS+='overlay,'
+        prt-get isinst glslang libclc python3-ply lua && PKGMK_MESA_VULKAN_DRIVERS+='intel,' PKGMK_MESA_VULKAN_LAYERS+='intel-nullhw,'
+        VULKAN_DRIVERS=${PKGMK_MESA_VULKAN_DRIVERS#,}intel_hasvk,virtio
+        PKGMK_MESA_GALLIUM+='zink,'
+    else
+        VULKAN_DRIVERS=""
+        VULKAN_LAYERS=""
+    fi
+    prt-get isinst wayland-protocols && PKGMK_MESA_PLATFORMS+='wayland'
+    ## for future references
+    #prt-get isinst xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm && PKGMK_MESA_PLATFORMS+=',x11'
+    PKGMK_MESA_PLATFORMS+=',x11'
 
-	printf '%s' "$version-$release" > $name-$version/VERSION
+    printf '%s' "$version-$release" > $name-$version/VERSION
 
-	meson setup build $name-$version $PKGMK_MESA \
-		--prefix=/usr \
-		--sysconfdir=/etc \
-		--buildtype=plain \
-		-D b_lto=false \
-		-D b_pie=true \
-		-D egl=enabled \
-		-D llvm=enabled \
-		-D shared-llvm=enabled \
-		-D gbm=enabled \
-		-D gles1=disabled \
-		-D gles2=enabled \
-		-D glx=dri \
-		-D gallium-drivers=${PKGMK_MESA_GALLIUM}svga \
-		-D platforms=${PKGMK_MESA_PLATFORMS#,} \
-		-D shared-glapi=enabled \
-		-D video-codecs=all \
-		-D glvnd=enabled \
-		-D vulkan-drivers=$VULKAN_DRIVERS \
-		-D vulkan-layers=$VULKAN_LAYERS
+    patch -Np1 -d $name-$version -i $SRC/37027.patch
 
-	meson compile -C build -j ${JOBS:-1}
-	DESTDIR=$PKG meson install -C build
+    meson setup build $name-$version $PKGMK_MESA \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --buildtype=plain \
+        -D b_lto=false \
+        -D b_pie=true \
+        -D egl=enabled \
+        -D llvm=enabled \
+        -D shared-llvm=enabled \
+        -D gbm=enabled \
+        -D gles1=disabled \
+        -D gles2=enabled \
+        -D glx=dri \
+        -D gallium-drivers=${PKGMK_MESA_GALLIUM}svga \
+        -D platforms=${PKGMK_MESA_PLATFORMS#,} \
+        -D shared-glapi=enabled \
+        -D video-codecs=all \
+        -D glvnd=enabled \
+        -D vulkan-drivers=$VULKAN_DRIVERS \
+        -D vulkan-layers=$VULKAN_LAYERS
 
-	# indirect rendering symlink
-	ln -s libGLX_mesa.so.0 $PKG/usr/lib/libGLX_indirect.so.0
+    meson compile -C build -j ${JOBS:-1}
+    DESTDIR=$PKG meson install -C build
+
+    # indirect rendering symlink
+    ln -s libGLX_mesa.so.0 $PKG/usr/lib/libGLX_indirect.so.0
 }
