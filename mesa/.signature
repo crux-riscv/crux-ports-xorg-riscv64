@@ -1,6 +1,6 @@
 untrusted comment: verify with /etc/ports/xorg-riscv64.pub
-RWTzD/a0Q5Vzjy9UZHrg7CbEPvoxkuYVpsWAuQWzkglb7Xza5pZxoqLiWL0qxXLOfLVivLFyFl/PjffnWexC+L/xrizDAj1kugw=
-SHA256 (Pkgfile) = 343102c9103b898f75d79892dfb69567a01416582cda95140238a1ac88260ee3
-SHA256 (.footprint) = bc0bde0aad6e125a509039feb6345221326e887e6490de8b43c1e122fd5bdeaf
-SHA256 (mesa-25.2.3.tar.xz) = f2d6b28562f1d6cb9c17ee8e58eeade7aa5faf927ae71065eadb41e17f92b4f8
+RWTzD/a0Q5VzjzfEZxhZTKjqsc/Td7EUv63K1bpoIu+3GJQs3ef2BNYTPVxwaQ+wDa19Jn9haZ8sRlycCRJBx20Fr3MfsIFJcwQ=
+SHA256 (Pkgfile) = 6c559b3d10eefa751c802701e667a93b2f52f16378b6e83832febcc81821ff80
+SHA256 (.footprint) = 1be864a75e4cf238430c6f69de1e5f1713972129543f7701f00c39a6a42f3b96
+SHA256 (mesa-25.2.4.tar.xz) = a370b4c549cbfbe646b319e34d73edb50ed883978f5e95133f282f0eae39ab52
 SHA256 (37027.patch) = 0267d1d06b347c19804be6bf9cee633ada3c3921376225d23afdecf3022be415
