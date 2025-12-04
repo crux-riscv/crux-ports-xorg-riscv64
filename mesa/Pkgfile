@@ -2,21 +2,20 @@
 # URL: https://www.mesa3d.org/
 # Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
 # Depends on: elfutils libdrm libglvnd llvm python3-mako python3-pyyaml xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm
-# Optional: cbindgen directx-headers glslang libclc libunwind libva libvdpau lm_sensors lua python3-ply rust-bindgen spirv-llvm-translator vulkan-loader wayland-protocols
+# Optional: cbindgen directx-headers glslang libclc libdisplay-info libunwind libva lm_sensors lua python3-ply rust-bindgen spirv-llvm-translator vulkan-loader wayland-protocols
 
 name=mesa
-version=25.2.7
+version=25.3.1
 release=1
-source=(https://archive.mesa3d.org/$name-$version.tar.xz
-    37027.patch)
+source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
 build() {
     prt-get isinst directx-headers && PKGMK_MESA_GALLIUM+='d3d12,'
     prt-get isinst libclc && PKGMK_MESA_GALLIUM+='iris,'
     prt-get isinst libclc rust-bindgen && PKGMK_MESA+=' -D gallium-rusticl=true'
+    prt-get isinst libdisplay-info && PKGMK_MESA+=' -D display-info=enabled'
     prt-get isinst libunwind && PKGMK_MESA+=' -D libunwind=enabled'
     #prt-get isinst libva && PKGMK_MESA+=' -D gallium-va=enabled' || PKGMK_MESA+=' -D gallium-va=disabled'
-    prt-get isinst libvdpau && PKGMK_MESA+=' -D gallium-vdpau=enabled' || PKGMK_MESA+=' -D gallium-vdpau=disabled'
     prt-get isinst lm_sensors && PKGMK_MESA+=' -D lmsensors=enabled'
     if prt-get isinst vulkan-loader; then
         #prt-get isinst cbindgen rust-bindgen spirv-llvm-translator && PKGMK_MESA_VULKAN_DRIVERS+='nouveau,'
@@ -35,8 +34,6 @@ build() {
     PKGMK_MESA_PLATFORMS+=',x11'
 
     printf '%s' "$version-$release" > $name-$version/VERSION
-
-    patch -Np1 -d $name-$version -i $SRC/37027.patch
 
     meson setup build $name-$version $PKGMK_MESA \
         --prefix=/usr \
